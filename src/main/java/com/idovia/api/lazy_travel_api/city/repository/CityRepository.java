@@ -10,11 +10,11 @@ public class CityRepository {
 	private ArrayList <CityModel> cities;
 
 	public CityRepository () {
-		cities.add(new CityModel("1", "Paris", "3DFRPAR"));
-		cities.add(new CityModel("2", "Lyon", "3DFRLYS"));
-		cities.add(new CityModel("3", "Lourdes", "3DFRLDE"));
-		cities.add(new CityModel("4", "Toulouse", "3DFRTLS"));
-		cities.add(new CityModel("5", "Nice", "3DFRNCE"));
+		cities.add(new CityModel("1", "Paris", "3DFRPAR", "", ""));
+		cities.add(new CityModel("2", "Lyon", "3DFRLYS", "", ""));
+		cities.add(new CityModel("3", "Lourdes", "3DFRLDE", "", ""));
+		cities.add(new CityModel("4", "Toulouse", "3DFRTLS", "", ""));
+		cities.add(new CityModel("5", "Nice", "3DFRNCE", "", ""));
 		/*
 		cities.add(new CityModel("6", "La Rochelle", ""));
 		cities.add(new CityModel("7", "Carcassonne", ""));

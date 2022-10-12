@@ -1,4 +1,4 @@
-package com.idovia.api.lazy_travel_api.train_journey;
+package com.idovia.api.lazy_travel_api.journey.train_journey;
 
 import com.idovia.api.lazy_travel_api.city.model.CityModel;
 

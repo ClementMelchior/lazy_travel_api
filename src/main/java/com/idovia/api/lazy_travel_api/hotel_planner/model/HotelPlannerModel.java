@@ -145,7 +145,7 @@ public class HotelPlannerModel {
 
 
     public String toString () {
-        return this.HotelId + " | ";
+        return this.HotelId + " | " + this.Address1 + " | " + this.City + " | " + this.Cost + " | " + this.HotelName + " | " + this.Review + " | " + this.DistanceFromCity;
     }
 
     // Getter and Setter

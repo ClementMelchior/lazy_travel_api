@@ -1,6 +1,8 @@
-package com.idovia.api.lazy_travel_api.train_journey.kelbillet.model;
+package com.idovia.api.lazy_travel_api.journey.train_journey.kelbillet.model;
 
-public class TicketKelbilletModel implements Comparable<TicketKelbilletModel> {
+import com.idovia.api.lazy_travel_api.journey.model.JourneyModelInterface;
+
+public class TicketKelbilletModel implements Comparable<TicketKelbilletModel>, JourneyModelInterface {
     private int type_id;
     private String price;
     private String currency;

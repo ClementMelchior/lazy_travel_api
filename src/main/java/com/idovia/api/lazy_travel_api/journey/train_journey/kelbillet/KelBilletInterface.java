@@ -1,4 +1,4 @@
-package com.idovia.api.lazy_travel_api.train_journey.kelbillet;
+package com.idovia.api.lazy_travel_api.journey.train_journey.kelbillet;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,8 +8,8 @@ import java.util.List;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.idovia.api.lazy_travel_api.city.model.CityModel;
-import com.idovia.api.lazy_travel_api.train_journey.kelbillet.exception.ExecutionRequestException;
-import com.idovia.api.lazy_travel_api.train_journey.kelbillet.model.TicketKelbilletModel;
+import com.idovia.api.lazy_travel_api.journey.train_journey.kelbillet.exception.ExecutionRequestException;
+import com.idovia.api.lazy_travel_api.journey.train_journey.kelbillet.model.TicketKelbilletModel;
 
 public interface KelBilletInterface {
     

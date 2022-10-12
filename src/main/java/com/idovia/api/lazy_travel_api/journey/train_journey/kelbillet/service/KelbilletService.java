@@ -1,4 +1,4 @@
-package com.idovia.api.lazy_travel_api.train_journey.kelbillet.service;
+package com.idovia.api.lazy_travel_api.journey.train_journey.kelbillet.service;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.idovia.api.lazy_travel_api.city.model.CityModel;
-import com.idovia.api.lazy_travel_api.train_journey.kelbillet.KelBilletInterface;
-import com.idovia.api.lazy_travel_api.train_journey.kelbillet.model.KelbilletResponseModel;
-import com.idovia.api.lazy_travel_api.train_journey.kelbillet.model.TicketKelbilletModel;
+import com.idovia.api.lazy_travel_api.journey.train_journey.kelbillet.KelBilletInterface;
+import com.idovia.api.lazy_travel_api.journey.train_journey.kelbillet.model.KelbilletResponseModel;
+import com.idovia.api.lazy_travel_api.journey.train_journey.kelbillet.model.TicketKelbilletModel;
 
 public class KelbilletService implements KelBilletInterface {
 

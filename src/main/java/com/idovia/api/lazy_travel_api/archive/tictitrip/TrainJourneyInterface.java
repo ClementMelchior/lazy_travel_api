@@ -1,10 +1,10 @@
-package com.idovia.api.lazy_travel_api.train_journey.tictitrip;
+package com.idovia.api.lazy_travel_api.archive.tictitrip;
 
 import java.text.ParseException;
 import java.util.List;
 
 import com.idovia.api.lazy_travel_api.city.model.CityModel;
-import com.idovia.api.lazy_travel_api.train_journey.model.TrainJourneyModel;
+import com.idovia.api.lazy_travel_api.archive.model.TrainJourneyModel;
 
 public interface TrainJourneyInterface {
 

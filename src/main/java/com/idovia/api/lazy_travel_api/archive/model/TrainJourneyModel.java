@@ -1,4 +1,4 @@
-package com.idovia.api.lazy_travel_api.train_journey.model;
+package com.idovia.api.lazy_travel_api.archive.model;
 
 public class TrainJourneyModel {
 

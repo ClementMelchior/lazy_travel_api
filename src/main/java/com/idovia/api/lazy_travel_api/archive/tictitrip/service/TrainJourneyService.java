@@ -1,4 +1,4 @@
-package com.idovia.api.lazy_travel_api.train_journey.tictitrip.service;
+package com.idovia.api.lazy_travel_api.archive.tictitrip.service;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,8 +15,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Service;
 
 import com.idovia.api.lazy_travel_api.city.model.CityModel;
-import com.idovia.api.lazy_travel_api.train_journey.model.TrainJourneyModel;
-import com.idovia.api.lazy_travel_api.train_journey.tictitrip.TrainJourneyInterface;
+import com.idovia.api.lazy_travel_api.archive.model.TrainJourneyModel;
+import com.idovia.api.lazy_travel_api.archive.tictitrip.TrainJourneyInterface;
 
 @Service
 public class TrainJourneyService implements TrainJourneyInterface {

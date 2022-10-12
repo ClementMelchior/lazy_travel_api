@@ -5,16 +5,20 @@ public class CityModel {
     private String id;
     private String name;
     private String codeKelbillet;
+    private String latitude;
+    private String longitude;
     
 
     public CityModel() {
         
     }
 
-    public CityModel(String id, String name, String codeKelbillet) {
+    public CityModel(String id, String name, String codeKelbillet, String latitude, String longitude) {
         this.id = id;
         this.name = name;
         this.codeKelbillet = codeKelbillet;
+        this.latitude=latitude;
+        this.longitude=longitude;
     }
 
 
@@ -37,6 +41,18 @@ public class CityModel {
     }
     public void setCodeKelbillet(String codeKelbillet) {
         this.codeKelbillet = codeKelbillet;
+    }
+    public String getLatitude() {
+        return latitude;
+    }
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+    public String getLongitude() {
+        return longitude;
+    }
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
     
 }

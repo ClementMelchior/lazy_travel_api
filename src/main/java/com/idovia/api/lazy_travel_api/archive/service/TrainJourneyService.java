@@ -1,7 +1,7 @@
-package com.idovia.api.lazy_travel_api.train_journey.service;
+package com.idovia.api.lazy_travel_api.archive.service;
 
 import com.idovia.api.lazy_travel_api.city.model.CityModel;
-import com.idovia.api.lazy_travel_api.train_journey.TrainJourneyInterface;
+import com.idovia.api.lazy_travel_api.journey.train_journey.TrainJourneyInterface;
 
 public class TrainJourneyService implements TrainJourneyInterface {
 

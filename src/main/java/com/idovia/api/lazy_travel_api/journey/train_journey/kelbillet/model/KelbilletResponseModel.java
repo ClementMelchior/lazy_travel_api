@@ -1,4 +1,4 @@
-package com.idovia.api.lazy_travel_api.train_journey.kelbillet.model;
+package com.idovia.api.lazy_travel_api.journey.train_journey.kelbillet.model;
 
 public class KelbilletResponseModel {
 

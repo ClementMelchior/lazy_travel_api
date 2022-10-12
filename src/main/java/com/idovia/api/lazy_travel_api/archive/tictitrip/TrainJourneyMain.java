@@ -1,8 +1,8 @@
-package com.idovia.api.lazy_travel_api.train_journey.tictitrip;
+package com.idovia.api.lazy_travel_api.archive.tictitrip;
 
 
 import com.idovia.api.lazy_travel_api.city.model.CityModel;
-import com.idovia.api.lazy_travel_api.train_journey.tictitrip.service.TrainJourneyService;
+import com.idovia.api.lazy_travel_api.archive.tictitrip.service.TrainJourneyService;
 
 public class TrainJourneyMain {
     public static void main(String[] args) throws InterruptedException {

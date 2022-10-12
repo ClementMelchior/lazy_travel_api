@@ -29,6 +29,10 @@ public class HotelPlannerResponseModel {
         this.totalCount = totalCount;
     }
 
+    public String toString () {
+        return this.currency +" | "+ this.success +" | "+ this.locale +" | "+ this.metric +" | "+ this.totalCount;
+    }
+
 
 
     // Getter and Setter 
