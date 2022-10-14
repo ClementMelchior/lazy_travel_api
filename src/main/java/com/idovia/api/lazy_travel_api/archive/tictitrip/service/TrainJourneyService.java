@@ -14,9 +14,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Service;
 
-import com.idovia.api.lazy_travel_api.city.model.CityModel;
 import com.idovia.api.lazy_travel_api.archive.model.TrainJourneyModel;
 import com.idovia.api.lazy_travel_api.archive.tictitrip.TrainJourneyInterface;
+import com.idovia.api.lazy_travel_api.external_api.guru.model.CityModel;
 
 @Service
 public class TrainJourneyService implements TrainJourneyInterface {
