@@ -47,7 +47,7 @@ public class HotelPlannerModel {
     @JsonProperty("LatLonDistance")
     private String LatLonDistance;
     @JsonProperty("ZipCode")
-    private int ZipCode;
+    private String ZipCode;
     @JsonProperty("CostNumeric")
     private Double CostNumeric;
     @JsonProperty("ZipDirection")
@@ -90,7 +90,7 @@ public class HotelPlannerModel {
             Double longitude, String phone, String state, String comments, String addressDirection,
             String latLonDirection, Double cscore, int priority, String cost, int hotelIdTypeId, String thumbnailURL,
             String id, String landmarkDirection, String address1, int hotelId, String currency, Double totalTaxRate,
-            String distanceToAddress, String latLonDistance, int zipCode, Double costNumeric, String zipDirection,
+            String distanceToAddress, String latLonDistance, String zipCode, Double costNumeric, String zipDirection,
             String promoText, String costLong, String cityDirection, int isExclusiveRate, Double distanceFromCity,
             String distanceFromLandmark, String tnid, String landmark, String city, String countryCode, Double rating,
             String distanceFromZip, Double review, String valueAdds, String vendor, Double latitude,
@@ -334,11 +334,11 @@ public class HotelPlannerModel {
         LatLonDistance = latLonDistance;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return ZipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         ZipCode = zipCode;
     }
 

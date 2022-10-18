@@ -10,9 +10,21 @@ public class JourneyModel {
     private String arrivalAdress;
     private String arrivalDate;
 
+    public JourneyModel(String travelType, String departureAdress, String departureDate, int timeTravel, Double price,
+            String arrivalAdress, String arrivalDate) {
+        this.travelType = travelType;
+        this.departureAdress = departureAdress;
+        this.departureDate = departureDate;
+        this.timeTravel = timeTravel;
+        this.price = price;
+        this.arrivalAdress = arrivalAdress;
+        this.arrivalDate = arrivalDate;
+    }
 
 
-
+    public String toString () {
+        return this.getTravelType() + " | " + this.getDepartureAdress() + " | " + this.getDepartureDate() + " | " + this.getArrivalAdress() + " | " + this.getArrivalDate();
+    }
 
 
     // Getter and Setter 

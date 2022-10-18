@@ -1,6 +1,6 @@
-package com.idovia.api.lazy_travel_api.external_api.journey.train_journey.kelbillet.model;
+package com.idovia.api.lazy_travel_api.external_api.journey.kelbillet.model;
 
-public class TicketKelbilletModel implements Comparable<TicketKelbilletModel> {
+public class TicketKelbilletSncfModel implements Comparable<TicketKelbilletSncfModel> {
     private int type_id;
     private String price;
     private String currency;
@@ -21,11 +21,11 @@ public class TicketKelbilletModel implements Comparable<TicketKelbilletModel> {
     private String additional_informations;
 
 
-    public TicketKelbilletModel() {
+    public TicketKelbilletSncfModel() {
         
     }
 
-    public TicketKelbilletModel(int type, String price, String currency, int duration, String departure_date, String arrival_date,
+    public TicketKelbilletSncfModel(int type, String price, String currency, int duration, String departure_date, String arrival_date,
             String carrier_id, String carrier_name, String departure_name, String arrival_name, int wifi, int socket,
             boolean combine, String partner_id, String partner_name, String deepLink, int is_irrelevant,
             String additional_informations) {
@@ -50,7 +50,7 @@ public class TicketKelbilletModel implements Comparable<TicketKelbilletModel> {
     }
 
     @Override
-    public int compareTo(TicketKelbilletModel t) {
+    public int compareTo(TicketKelbilletSncfModel t) {
         return Integer.compare(Integer.parseInt(getPrice()), Integer.parseInt(t.getPrice()));
     }
 

@@ -1,52 +1,73 @@
 package com.idovia.api.lazy_travel_api.model;
 
+import java.util.List;
+
+import com.idovia.api.lazy_travel_api.external_api.guru.model.CityModel;
 import com.idovia.api.lazy_travel_api.external_api.hotel_planner.model.HotelPlannerModel;
 import com.idovia.api.lazy_travel_api.external_api.journey.model.JourneyModel;
 
 public class LazyTravelResponseModel {
 
-    private JourneyModel goingJourney;
-    private JourneyModel commingJourney;
-    private HotelPlannerModel hotel;
+    private CityModel cityDeparture;
+    private CityModel cityArrival;
+    private List <JourneyModel> goingJourney;
+    private List <JourneyModel> commingJourney;
+    private List <HotelPlannerModel> hotel;
     private Double price;
 
 
     
-    public LazyTravelResponseModel(JourneyModel goingJourney, JourneyModel commingJourney,
-            HotelPlannerModel hotel) {
+    public LazyTravelResponseModel(CityModel cityDeparture, CityModel cityArrival, List <JourneyModel> goingJourney, List <JourneyModel> commingJourney,
+    List <HotelPlannerModel> hotel) {
+        this.cityDeparture=cityDeparture;
+        this.cityArrival=cityArrival;
         this.goingJourney = goingJourney;
         this.commingJourney = commingJourney;
         this.hotel = hotel;
     }
 
-    public void setPrice () {
-        this.price = this.goingJourney.getPrice()+this.commingJourney.getPrice()+this.hotel.getCostNumeric();
+    public String toString () {
+        return this.goingJourney.get(0) + "\n" + this.commingJourney.get(0) + "\n" + this.hotel.get(0);
+    }
+
+    public void setPrice (int nbrPerson) {
+        this.price = this.goingJourney.get(0).getPrice()*nbrPerson/100 + this.commingJourney.get(0).getPrice()*nbrPerson/100 + this.hotel.get(0).getCostNumeric();
     } 
-
-
 
     // Getter and Setter 
 
-    public JourneyModel getGoingJourney() {
+    public List <JourneyModel> getGoingJourney() {
         return goingJourney;
     }
-    public void setGoingJourney(JourneyModel goingJourney) {
+    public void setGoingJourney(List <JourneyModel> goingJourney) {
         this.goingJourney = goingJourney;
     }
-    public JourneyModel getCommingJourney() {
+    public List <JourneyModel> getCommingJourney() {
         return commingJourney;
     }
-    public void setCommingJourney(JourneyModel commingJourney) {
+    public void setCommingJourney(List <JourneyModel> commingJourney) {
         this.commingJourney = commingJourney;
     }
-    public HotelPlannerModel getHotel() {
+    public List <HotelPlannerModel> getHotel() {
         return hotel;
     }
-    public void setHotel(HotelPlannerModel hotel) {
+    public void setHotel(List <HotelPlannerModel> hotel) {
         this.hotel = hotel;
     }
     public Double getPrice () {
         return this.price;
+    }
+    public CityModel getCityDeparture() {
+        return cityDeparture;
+    }
+    public void setCityDeparture(CityModel cityDeparture) {
+        this.cityDeparture = cityDeparture;
+    }
+    public CityModel getCityArrival() {
+        return cityArrival;
+    }
+    public void setCityArrival(CityModel cityArrival) {
+        this.cityArrival = cityArrival;
     }
     
 }
