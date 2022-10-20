@@ -1,16 +1,16 @@
 package com.idovia.api.lazy_travel_api.external_api.journey.kelbillet.model;
 
-public class KelbilletResponseSncfModel {
+public class KelbilletResponseModel {
 
     private String status;
     private String error;
-    private TicketKelbilletSncfModel response[];
+    private TicketKelbilletModel response[];
 
 
-    public KelbilletResponseSncfModel() {
+    public KelbilletResponseModel() {
     }
 
-    public KelbilletResponseSncfModel(String status, String error, TicketKelbilletSncfModel[] response) {
+    public KelbilletResponseModel(String status, String error, TicketKelbilletModel[] response) {
         this.status = status;
         this.error = error;
         this.response = response;
@@ -30,10 +30,10 @@ public class KelbilletResponseSncfModel {
     public void setError(String error) {
         this.error = error;
     }
-    public TicketKelbilletSncfModel[] getResponse() {
+    public TicketKelbilletModel[] getResponse() {
         return response;
     }
-    public void setResponse(TicketKelbilletSncfModel[] response) {
+    public void setResponse(TicketKelbilletModel[] response) {
         this.response = response;
     }
     

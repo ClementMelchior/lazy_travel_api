@@ -11,7 +11,7 @@ public class HotelPlannerMain {
 
     public static void main(String args []) throws ParseException{
         HotelPlannerService hotelPlannerService = new HotelPlannerService();
-        List <HotelPlannerModel> hp = hotelPlannerService.findAllHotel(new CityModel("12", "Lille", "3DFRLIL", "7CFRlille___%40u140n", "50.62925", "3.057256"), "2022-10-29", "2022-10-30");
+        List <HotelPlannerModel> hp = hotelPlannerService.findAllHotelBestMatch(new CityModel("23", "Nimes", "",  "3DFRFNI", "7CFRnimes___%40spg17", "43.836699", "43.836699"), "2022-11-19", "2022-11-20");
 
         hp.stream().forEach(t -> System.out.println(t));
    }

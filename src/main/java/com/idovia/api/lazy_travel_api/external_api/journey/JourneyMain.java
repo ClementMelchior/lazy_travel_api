@@ -16,7 +16,7 @@ public class JourneyMain {
     public static void main(String[] args) throws StreamReadException, DatabindException, MalformedURLException, ParseException, ExecutionRequestException, IOException {
         JourneyInterface journeyInterface = new JourneyService();
 
-        List <JourneyModel> journeys = journeyInterface.findJourney(new CityModel("1", "Paris", "3DFRPAR", "7CFRparis___%40u09tv", "48.856614", "2.3522219"), new CityModel("12", "Lille", "3DFRLIL", "7CFRlille___%40u140n", "50.62925", "3.057256"), "2022-10-29", "06:00", 120);
+        List <JourneyModel> journeys = journeyInterface.findJourney(new CityModel("11", "Montpellier", "",  "3DFRMPL", "7CFRmontpell%40spfb1", "43.610769", "3.876716"), new CityModel("2", "Lyon", "",  "3DFRLYS", "7CFRlyon____%40u05kq", "45.764043", "4.835659"), "2022-11-20", "17:00", 150);
 
         for (JourneyModel journey : journeys) {
             System.out.println(journey);

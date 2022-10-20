@@ -44,13 +44,18 @@ public class LazyTravelService implements LazyTravelInterface{
         for (CityModel city : destinations) {   
             pourcentProgress=pourcentProgress+pourcent;   
             System.out.println(pourcentProgress+"%");      
-            goingJourney = JourneyInterface.findJourney(request.getDepartureCity(), city, request.getDepartureDate(), request.getDepartureHour(), 120);
-            commingJourney = JourneyInterface.findJourney(city, request.getDepartureCity(), request.getArrivalDate(), request.getArrivalHour(), 120);
+            goingJourney = JourneyInterface.findJourney(request.getDepartureCity(), city, request.getDepartureDate(), request.getDepartureHour(), 150);
+            commingJourney = JourneyInterface.findJourney(city, request.getDepartureCity(), request.getArrivalDate(), request.getArrivalHour(), 150);
             hotels = hotelPlanerInterface.findAllHotelBestMatch(city, request.getDepartureDate(), request.getArrivalDate());
             if (goingJourney.size()!=0 && commingJourney.size()!=0 && hotels.size()!=0) {
                 LazyTravelResponseModel ltr = new LazyTravelResponseModel(request.getDepartureCity(), city, goingJourney, commingJourney, hotels);
                 responses.add(ltr);
                 ltr.setPrice(request.getNbrPerson());            
+            }
+            else {
+                if (goingJourney.size()==0) {System.out.println("No train to go to "+city.getName());}
+                if (commingJourney.size()==0) {System.out.println("No train to come back from "+city.getName());}
+                if (hotels.size()==0) {System.out.println("No hotel at "+city.getName());}
             }
         }
 

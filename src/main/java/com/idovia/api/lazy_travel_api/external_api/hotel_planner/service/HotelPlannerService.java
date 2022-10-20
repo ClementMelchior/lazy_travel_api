@@ -45,9 +45,11 @@ public class HotelPlannerService implements HotelPlanerInterface {
             })
             .collect(Collectors.toList());
 
+
         if (sortedHotel.size()!=0) {
             Double maxPrice = sortedHotel.get(0).getCostNumeric()*1.50;
             List<HotelPlannerModel> sortedHotel2 = sortedHotel.stream().filter(h -> h.getCostNumeric()<maxPrice).collect(Collectors.toList());
+
             return sortedHotel2;
         }
         return new ArrayList<HotelPlannerModel> ();

@@ -20,13 +20,12 @@ public class LazyTravelMain {
 
     public static void main(String[] args) throws StreamReadException, DatabindException, MalformedURLException, ParseException, ExecutionRequestException, IOException {
         LazyTravelInterface lazyTravelInterface = new LazyTravelService();
-        CityModel departureCity = new CityModel("1", "Paris", "3DFRPAR", "7CFRparis___%40u09tv", "48.856614", "2.3522219");
-        String departureDate="2022-10-29";
+        CityModel departureCity = new CityModel("2", "Lyon", "", "3DFRLYS", "7CFRlyon____%40u05kq", "45.764043", "4.835659");
+        String departureDate="2022-11-19";
         String departureHour="06:00";
-        String arrivalDate="2022-10-30";
-        String arrivalHour="16:00";
+        String arrivalDate="2022-11-20";
+        String arrivalHour="17:00";
         int nbrPerson=2;
-
 
         List <LazyTravelResponseModel> responses = lazyTravelInterface.findTravel(new LazyTravelRequestModel(departureCity, departureDate, departureHour,
             arrivalDate, arrivalHour, nbrPerson));
