@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Repository;
+
 import com.idovia.api.lazy_travel_api.external_api.guru.model.StationModel;
 
+@Repository
 public class StationRepository {
 
     private ArrayList<StationModel> stations = new ArrayList <StationModel> ();

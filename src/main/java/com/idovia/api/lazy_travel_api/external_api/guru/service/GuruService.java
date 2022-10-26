@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.net.URL;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.idovia.api.lazy_travel_api.external_api.guru.GuruInterface;
@@ -15,28 +16,18 @@ import com.idovia.api.lazy_travel_api.external_api.guru.model.StationModel;
 import com.idovia.api.lazy_travel_api.external_api.guru.repository.CityRepository;
 import com.idovia.api.lazy_travel_api.external_api.guru.repository.StationRepository;
 
+@Service
 public class GuruService implements GuruInterface {
 
-    //@Autowired
-    //private StationRepository stationRepository;
-    private final String URLbegin = "https://api.direkt.bahn.guru/";
-    private final String URLend = "?localTrainsOnly=false&v=4";
-    private CityStationService cityStationService;
+    @Autowired
     private StationRepository stationRepository;
+    @Autowired
     private CityRepository cityRepository;
-
-
-    public GuruService () {
-        this.cityStationService = new CityStationService();
-        this.stationRepository = new StationRepository();
-        this.cityRepository = new CityRepository();
-    }
     
     // Return all nearby city form given city
 
     public List<CityModel> findAllNearbyCity(CityModel city) {
         List <StationModel> stationsRequested = stationRepository.findAllByIdCity(city.getId());
-        List <StationModel> stations = stationRepository.findAll();
         List <GuruResponse> gurus = new ArrayList<GuruResponse>();
 
 
@@ -56,7 +47,6 @@ public class GuruService implements GuruInterface {
 
     public List<CityModel> findAllNearbyCityByTimeTravel (CityModel city, int minTimeTravel, int maxTimeTravel) {
         List <StationModel> stationsRequested = stationRepository.findAllByIdCity(city.getId());
-        List <StationModel> stations = stationRepository.findAll();
         List <GuruResponse> gurus = new ArrayList<GuruResponse>();
         List <GuruResponse> gurusReduced = new ArrayList<GuruResponse>();
 
@@ -91,11 +81,10 @@ public class GuruService implements GuruInterface {
     }
 
     public List<GuruResponse> findAllNearbyCity(StationModel station) {
-        //station.setIdGuru("8700019");
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            return Arrays.asList(mapper.readValue(new URL(this.URLbegin +station.getIdGuru() + this.URLend), GuruResponse[].class));
+            return Arrays.asList(mapper.readValue(new URL(this.getCustomUrl(station)), GuruResponse[].class));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,28 +92,8 @@ public class GuruService implements GuruInterface {
         return new ArrayList <GuruResponse> ();
     }
 
-
-/* 
-    @Override
-    public List<GuruResponse> findAllNearbyCity(List<StationModel> stations) {
-        List <GuruResponse> gurusResult = new ArrayList<GuruResponse>();
-        for (StationModel s : stations) {
-            gurusResult.addAll(findAllNearbyCity(s));
-        }
-        return gurusResult;
+    
+    private String getCustomUrl (StationModel station) {
+        return "https://api.direkt.bahn.guru/" + station.getIdGuru() + "?localTrainsOnly=false&v=4";
     }
-
-
-    @Override
-    public List<GuruResponse> findAllNearbyCityByTimeTravel(List<StationModel> stations, int minTimeTravel,
-            int maxTimeTravel) {
-                List <GuruResponse> gurusResult = new ArrayList<GuruResponse>();
-                for (StationModel s : stations) {
-                    gurusResult.addAll(findAllNearbyCityByTimeTravel(s, minTimeTravel, maxTimeTravel));
-                }
-                return gurusResult;
-    }
-
-    */
-
 }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Jowe Boy&apos;s Website</title>
+		<link rel="stylesheet" href="css/home/computer.css">
+	</head>
+
+	<body>
+		<header>
+			<div class="row">
+				<div class="logo">
+					<img src="img/idovia-white-logo.png" alt="oe_logo">
+				</div>
+				<ul class="main-nav">
+					<li><a href="">SE CONNECTER</a></li>
+					<li><a href="">A PROPOS</a></li>
+					<li><a href="">CONTACT</a></li>
+				</ul>
+			</div>
+			<div class="hero">
+				<h1>ALORS, ON PART OÙ ?</h1>
+				<div class="contact-form">
+					<div class="block-city"> 
+						<select class="city" name="city">
+							<option value="-1" selected>Ville de départ</option>
+							<option value="Paris">Paris </option>
+							<option value="Lyon">Lyon </option>
+							<option value="Lille">Lille </option>
+							<option value="Marseille">Marseille </option>
+							<option value="Metz">Metz </option>
+							<option value="Rennes">Rennes </option>
+							<option value="Bordeaux">Bordeaux </option>
+							<option value="Nantes">Nantes </option>
+							<option value="Metz">Metz </option>
+							<option value="Strasbourg">Strasbourg </option>
+							<option value="Nice">Nice </option>
+						</select>
+					</div>
+					<div class="block-date"> 
+						<input class="date" type="date" name="dateDeparture" placeholder="Début">
+					</div>
+					<div class="block-date"> 
+						<input class="date" type="date" name="dateArrival" placeholder="Fin">
+					</div>
+					<div class="block-traveler"> 
+						<select class="traveler" name="traveler">
+							<option value="-1" selected>Voyageur ?</option>
+							<option value="1">1 voyageur </option>
+							<option value="2">2 voyageurs </option>
+						</select>					</div>
+					<div class="block-button"> 
+						<input class="button-search" type="submit" value="Chercher">
+					</div>
+				</div>
+			</div>
+		</header>
+	</body>
+
+	<datalist id="cities">
+		<option value="Paris"> </option>
+		<option value="Lyon"> </option>
+		<option value="Lille"> </option>
+		<option value="Marseille"> </option>
+		<option value="Metz"> </option>
+		<option value="Rennes"> </option>
+		<option value="Bordeaux"> </option>
+		<option value="Nantes"> </option>
+		<option value="Metz"> </option>
+		<option value="Strasbourg"> </option>
+		<option value="Nice"> </option>
+	</datalist>
+
+</html>

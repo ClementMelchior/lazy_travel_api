@@ -5,33 +5,39 @@ import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.idovia.api.lazy_travel_api.LazyTravelInterface;
 import com.idovia.api.lazy_travel_api.external_api.guru.GuruInterface;
 import com.idovia.api.lazy_travel_api.external_api.guru.model.CityModel;
-import com.idovia.api.lazy_travel_api.external_api.guru.service.GuruService;
 import com.idovia.api.lazy_travel_api.external_api.hotel_planner.HotelPlanerInterface;
 import com.idovia.api.lazy_travel_api.external_api.hotel_planner.model.HotelPlannerModel;
-import com.idovia.api.lazy_travel_api.external_api.hotel_planner.service.HotelPlannerService;
 import com.idovia.api.lazy_travel_api.external_api.journey.model.JourneyModel;
-import com.idovia.api.lazy_travel_api.external_api.journey.service.JourneyService;
 import com.idovia.api.lazy_travel_api.external_api.journey.JourneyInterface;
 import com.idovia.api.lazy_travel_api.external_api.journey.kelbillet.exception.ExecutionRequestException;
 import com.idovia.api.lazy_travel_api.model.LazyTravelRequestModel;
 import com.idovia.api.lazy_travel_api.model.LazyTravelResponseModel;
 
+@Service
 public class LazyTravelService implements LazyTravelInterface{
 
-    private GuruInterface guruInterface = new GuruService();
-    private HotelPlanerInterface hotelPlanerInterface = new HotelPlannerService();
-    private JourneyInterface JourneyInterface = new JourneyService();
+    @Autowired
+    private GuruInterface guruInterface;
+    @Autowired
+    private HotelPlanerInterface hotelPlanerInterface;
+    @Autowired
+    private JourneyInterface JourneyInterface;
+
+    public LazyTravelService () {
+
+    }
 
 
     public List <LazyTravelResponseModel> findTravel (LazyTravelRequestModel request) throws StreamReadException, DatabindException, MalformedURLException, ParseException, ExecutionRequestException, IOException {
         List <LazyTravelResponseModel> responses = new ArrayList<LazyTravelResponseModel>();
-        List <CityModel> destinations = guruInterface.findAllNearbyCityByTimeTravel(request.getDepartureCity(), 50, 100);
+        List <CityModel> destinations = this.guruInterface.findAllNearbyCityByTimeTravel(request.getDepartureCity(), 50, 100);
 
         List <JourneyModel> goingJourney;
         List <JourneyModel> commingJourney;
