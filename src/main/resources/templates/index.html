@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
-		<title>Jowe Boy&apos;s Website</title>
-		<link rel="stylesheet" href="css/home/computer.css">
+		<title>LazyTravelWeb</title>
+		<script src="js/jquery-2.1.4.js"></script>
+		<link th:href="@{/styles/home/computer.css}" rel="stylesheet"/>
 	</head>
 
 	<body>
@@ -50,11 +51,19 @@
 							<option value="2">2 voyageurs </option>
 						</select>					</div>
 					<div class="block-button"> 
-						<input class="button-search" type="submit" value="Chercher">
+						<!--a th:href="@{lazy-travel-api/findTravel}" class="button-search">Chercher</a-->
+						<button class="button-search" onclick="redirect()">Chercher</button>
 					</div>
 				</div>
 			</div>
 		</header>
+
+		<script>
+			function redirect() {
+				$(".loader-wrapper").fadeIn("slow");
+				window.location.href = "http://localhost:8080/lazy-travel-api/findTravel";
+			}
+		</script>
 	</body>
 
 	<datalist id="cities">

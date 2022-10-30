@@ -1,0 +1,27 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: monospace;
+    background-color: #006e90;
+}
+
+
+img {
+	width: 250px;
+    margin-left: 40%;
+	height: auto;
+	margin-top: 20%;
+}
+
+h2 {
+	font-family: "Roboto", sans-serif;
+	color: white;
+	text-transform: uppercase;
+	font-size: 24px;
+	text-align: center;
+	margin-top: 20px;
+    width: 100%;
+}
