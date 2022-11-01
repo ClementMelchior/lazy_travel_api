@@ -4,10 +4,21 @@
 		<meta charset="UTF-8">
 		<title>LazyTravelWeb</title>
 		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/javascript.js"></script>
 		<link th:href="@{/styles/home/computer.css}" rel="stylesheet"/>
 	</head>
 
 	<body>
+
+		<div class="error-wrapper">
+			<span class="error">
+				<div class="error-text">
+					<p>N'oubliez pas de remplir tous les champs de recherche</p>
+				</div>
+				<button onclick="closeError()" class="error-cross">X</button>
+			</span>
+		</div>
+
 		<header>
 			<div class="row">
 				<div class="logo">
@@ -23,7 +34,7 @@
 				<h1>ALORS, ON PART OÙ ?</h1>
 				<div class="contact-form">
 					<div class="block-city"> 
-						<select class="city" name="city">
+						<select id="departureCity" class="city" name="city">
 							<option value="-1" selected>Ville de départ</option>
 							<option value="Paris">Paris </option>
 							<option value="Lyon">Lyon </option>
@@ -39,13 +50,13 @@
 						</select>
 					</div>
 					<div class="block-date"> 
-						<input class="date" type="date" name="dateDeparture" placeholder="Début">
+						<input id="departureDate" class="date" type="date" name="dateDeparture" placeholder="Début">
 					</div>
 					<div class="block-date"> 
-						<input class="date" type="date" name="dateArrival" placeholder="Fin">
+						<input id="arrivalDate" class="date" type="date" name="dateArrival" placeholder="Fin">
 					</div>
 					<div class="block-traveler"> 
-						<select class="traveler" name="traveler">
+						<select id="nbrPerson" class="traveler" name="traveler">
 							<option value="-1" selected>Voyageur ?</option>
 							<option value="1">1 voyageur </option>
 							<option value="2">2 voyageurs </option>
@@ -59,9 +70,19 @@
 		</header>
 
 		<script>
+			$(".error-wrapper").fadeOut(0);
+
 			function redirect() {
-				$(".loader-wrapper").fadeIn("slow");
-				window.location.href = "http://localhost:8080/lazy-travel-api/findTravel";
+				var departureCity = document.getElementById("departureCity").value;
+				var departureDate = document.getElementById("departureDate").value;
+				var arrivalDate = document.getElementById("arrivalDate").value;
+				var nbrPerson = document.getElementById("nbrPerson").value;
+
+				if (departureCity!=-1 && departureDate!="" && arrivalDate!="" && nbrPerson!=-1) {
+					window.location.href = "http://localhost:8080/lazy-travel-api/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
+				} else {
+					displayError();
+				}
 			}
 		</script>
 	</body>

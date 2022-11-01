@@ -86,6 +86,15 @@ public class CityRepository {
 		return null;
 	}
 
+	public CityModel findByName(String name) {
+		for (CityModel c : cities) {
+			if (c.getName().equals(name)) {
+				return c;
+			}
+		}
+		return null;
+	}
+
 	public CityModel findByCodeKelbillet(String code) {
 		for (CityModel c : cities) {
 			if (c.getCodeSncf()==code) {

@@ -23,6 +23,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .loader {
   display: inline-block;
   width: 100px;
@@ -30,10 +31,12 @@ body {
   position: relative;
   animation: loader 2s infinite ease;
 }
+
 .loader img {
   height: 100px;
   width: 100px;
 }
+
 .loader-inner {
   vertical-align: top;
   display: inline-block;

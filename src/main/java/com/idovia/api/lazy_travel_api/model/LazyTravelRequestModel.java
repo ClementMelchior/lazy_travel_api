@@ -1,10 +1,8 @@
 package com.idovia.api.lazy_travel_api.model;
 
-import com.idovia.api.lazy_travel_api.external_api.guru.model.CityModel;
-
 public class LazyTravelRequestModel {
 
-    private CityModel departureCity;
+    private String departureCity;
     private String departureDate;
     private String departureHour;
     private String arrivalDate;
@@ -12,7 +10,7 @@ public class LazyTravelRequestModel {
     private int nbrPerson;
 
 
-    public LazyTravelRequestModel(CityModel departureCity, String departureDate, String departureHour, String arrivalDate, String arrivalHour, int nbrPerson) {
+    public LazyTravelRequestModel(String departureCity, String departureDate, String departureHour, String arrivalDate, String arrivalHour, int nbrPerson) {
         this.departureCity = departureCity;
         this.departureDate = departureDate;
         this.departureHour = departureHour;
@@ -23,10 +21,10 @@ public class LazyTravelRequestModel {
 
     // Getter and Setter
 
-    public CityModel getDepartureCity() {
+    public String getDepartureCity() {
         return departureCity;
     }
-    public void setDepartureCity(CityModel departureCity) {
+    public void setDepartureCity(String departureCity) {
         this.departureCity = departureCity;
     }
     public String getArrivalHour() {

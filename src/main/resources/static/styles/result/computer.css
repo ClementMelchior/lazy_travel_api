@@ -324,6 +324,51 @@ input[type=number]::-webkit-inner-spin-button,
  	color: black;
  }
 
+/* ---------- error ----------- */
+
+.error-wrapper {
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 20px;
+	width: 90%;
+	height: auto;
+	color: #ff3c3c;
+	background: rgb(255, 184, 184);
+	border: 1px solid #ff3c3c;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.error {
+	width: 100%;
+	height: 100%;
+}
+
+.error-text {
+	float: left;
+	margin: 10px;
+	width: 80%;
+	height: 50px;
+	font-size: 20px;
+}
+
+.error-cross {
+	float: right;
+	font-size: 30px;
+	width: 50px;
+	height: 50px;
+	color: #ff3c3c;
+	background: rgb(255, 184, 184);
+	border: none;
+	position: absolute;
+	right: 5px;
+	top: 10px;
+	z-index: 999;
+}
+
+
+
 @media
   (-webkit-min-device-pixel-ratio: 2),
   (min-resolution: 192dpi) {
