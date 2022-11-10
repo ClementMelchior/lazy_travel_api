@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.idovia.api.lazy_travel_api.LazyTravelInterface;
-import com.idovia.api.lazy_travel_api.external_api.journey.kelbillet.exception.ExecutionRequestException;
+import com.idovia.api.lazy_travel_api.external_api.journey.exception.ExecutionRequestException;
 import com.idovia.api.lazy_travel_api.model.LazyTravelRequestModel;
 import com.idovia.api.lazy_travel_api.model.LazyTravelResponseModel;
 import com.idovia.api.lazy_travel_api.model.LazyTravelUniqueResponseModel;
@@ -27,18 +27,18 @@ public class LazyTravelController {
     @Autowired
     private LazyTravelInterface lazyTravelInterface;
 
-    @RequestMapping("/lazy-travel-api")
-    public String displayHome() {
-        return "index";
-    }
-
-    @RequestMapping("/lazy-travel-api/error")
+    @RequestMapping("/idovia/error")
     public String displayError() {
         return "error";
     }
 
+    @RequestMapping("/")
+    public String displayHome() {
+        return "index";
+    }
 
-    @RequestMapping("/lazy-travel-api/findTravel")
+
+    @RequestMapping("/findTravel")
     public String displayTravelFind(Model model, @RequestParam String departureCity, @RequestParam String departureDate, @RequestParam String departureHour, @RequestParam String arrivalDate, @RequestParam String arrivalHour, @RequestParam String nbrPerson) throws StreamReadException, DatabindException, MalformedURLException, ParseException, ExecutionRequestException, IOException {
         LazyTravelRequestModel request = new LazyTravelRequestModel(departureCity, departureDate, departureHour, arrivalDate, arrivalHour, Integer.parseInt(nbrPerson));
         model.addAttribute("request", request);
@@ -46,20 +46,23 @@ public class LazyTravelController {
     }
 
 
-    @RequestMapping(path="/lazy-travel-api/findTravel/api", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(path="/findTravel/api", method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
     public List <LazyTravelUniqueResponseModel> findTravel(@RequestBody LazyTravelRequestModel request) throws StreamReadException, DatabindException, MalformedURLException, ParseException, ExecutionRequestException, IOException {
 
         List <LazyTravelUniqueResponseModel> responsesUnique = new ArrayList<>();
 
-        List <LazyTravelResponseModel> responses = lazyTravelInterface.findTravel(request);
+        try {
+            List <LazyTravelResponseModel> responses = lazyTravelInterface.findTravel(request);
+            for (LazyTravelResponseModel response : responses) {
+                responsesUnique.add(new LazyTravelUniqueResponseModel(response));
+            }
+            return responsesUnique;
 
-        for (LazyTravelResponseModel response : responses) {
-            System.out.println(new LazyTravelUniqueResponseModel(response));
-            responsesUnique.add(new LazyTravelUniqueResponseModel(response));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-
-        return responsesUnique;
     }
 
 /* 

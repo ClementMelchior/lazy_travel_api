@@ -1,4 +1,4 @@
-package com.idovia.api.lazy_travel_api.external_api.journey.kelbillet.model;
+package com.idovia.api.lazy_travel_api.external_api.journey.model;
 
 public class TicketKelbilletModel implements Comparable<TicketKelbilletModel> {
     private int type_id;

@@ -3,26 +3,19 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>LazyTravelWeb</title>
-		<script src="js/jquery-2.1.4.js"></script>
-		<script src="js/javascript.js"></script>
+		<script th:src="@{/js/jquery-2.1.4.js}"></script>
+		<script th:src="@{/js/javascript.js}"></script>
 		<link th:href="@{/styles/home/computer.css}" rel="stylesheet"/>
 	</head>
 
 	<body>
+		<div id="error-wrapper" class="error-wrapper">
 
-		<div class="error-wrapper">
-			<span class="error">
-				<div class="error-text">
-					<p>N'oubliez pas de remplir tous les champs de recherche</p>
-				</div>
-				<button onclick="closeError()" class="error-cross">X</button>
-			</span>
 		</div>
-
 		<header>
 			<div class="row">
 				<div class="logo">
-					<img src="img/idovia-white-logo.png" alt="oe_logo">
+					<img th:src="@{/img/idovia-white-logo.png}" alt="oe_logo">
 				</div>
 				<ul class="main-nav">
 					<li><a href="">SE CONNECTER</a></li>
@@ -78,10 +71,15 @@
 				var arrivalDate = document.getElementById("arrivalDate").value;
 				var nbrPerson = document.getElementById("nbrPerson").value;
 
-				if (departureCity!=-1 && departureDate!="" && arrivalDate!="" && nbrPerson!=-1) {
-					window.location.href = "http://localhost:8080/lazy-travel-api/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
+				if (departureCity!=-1 && nbrPerson!=-1) {
+					if (isDateCorrect(departureDate, arrivalDate)) {
+						//window.location.href = "http://localhost:8080/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
+						window.location.href = "http://idovia-travel.fr/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
+					} else {
+						displayError("Selectionnez des dates correctes");
+					}
 				} else {
-					displayError();
+					displayError("N'oubliez pas de remplir tous les champs de recherche");
 				}
 			}
 		</script>

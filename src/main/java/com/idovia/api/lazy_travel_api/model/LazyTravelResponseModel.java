@@ -1,6 +1,7 @@
 package com.idovia.api.lazy_travel_api.model;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import com.idovia.api.lazy_travel_api.external_api.guru.model.CityModel;
 import com.idovia.api.lazy_travel_api.external_api.hotel_planner.model.HotelPlannerModel;
@@ -24,6 +25,14 @@ public class LazyTravelResponseModel {
         this.goingJourney = goingJourney;
         this.commingJourney = commingJourney;
         this.hotel = hotel;
+    }
+
+    public LazyTravelResponseModel(LazyTravelResponseCompletableFutureModel response) throws InterruptedException, ExecutionException {
+        this.cityDeparture=response.getCityDeparture();
+        this.cityArrival=response.getCityArrival();
+        this.goingJourney = response.getGoingJourney().get();
+        this.commingJourney = response.getCommingJourney().get();
+        this.hotel = response.getHotel().get();
     }
 
     public String toString () {

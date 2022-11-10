@@ -5,7 +5,10 @@ import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
@@ -17,8 +20,9 @@ import com.idovia.api.lazy_travel_api.external_api.hotel_planner.HotelPlanerInte
 import com.idovia.api.lazy_travel_api.external_api.hotel_planner.model.HotelPlannerModel;
 import com.idovia.api.lazy_travel_api.external_api.journey.model.JourneyModel;
 import com.idovia.api.lazy_travel_api.external_api.journey.JourneyInterface;
-import com.idovia.api.lazy_travel_api.external_api.journey.kelbillet.exception.ExecutionRequestException;
+import com.idovia.api.lazy_travel_api.external_api.journey.exception.ExecutionRequestException;
 import com.idovia.api.lazy_travel_api.model.LazyTravelRequestModel;
+import com.idovia.api.lazy_travel_api.model.LazyTravelResponseCompletableFutureModel;
 import com.idovia.api.lazy_travel_api.model.LazyTravelResponseModel;
 
 @Service
@@ -31,49 +35,63 @@ public class LazyTravelService implements LazyTravelInterface{
     @Autowired
     private HotelPlanerInterface hotelPlanerInterface;
     @Autowired
-    private JourneyInterface JourneyInterface;
+    private JourneyInterface journeyInterface;
 
     public LazyTravelService () {
 
     }
 
 
-    public List <LazyTravelResponseModel> findTravel (LazyTravelRequestModel request) throws StreamReadException, DatabindException, MalformedURLException, ParseException, ExecutionRequestException, IOException {
+    public List <LazyTravelResponseModel> findTravel (LazyTravelRequestModel request) throws StreamReadException, DatabindException, MalformedURLException, ParseException, ExecutionRequestException, IOException, InterruptedException, ExecutionException {
         List <LazyTravelResponseModel> responses = new ArrayList<LazyTravelResponseModel>();
+        System.out.println(request.getDepartureCity());
 
         CityModel cityDeparture = cityRepository.findByName(request.getDepartureCity());
-
-        System.out.println(cityDeparture);
-
         List <CityModel> destinations = this.guruInterface.findAllNearbyCityByTimeTravel(cityDeparture, 50, 100);
-
-        List <JourneyModel> goingJourney;
-        List <JourneyModel> commingJourney;
-        List <HotelPlannerModel> hotels;
 
         int pourcent = 100/destinations.size();
         int pourcentProgress = 0;
 
+        CompletableFuture <List <LazyTravelResponseCompletableFutureModel>> responsesCompletableFuture = findTravelAsync(request, destinations, cityDeparture);
 
-        for (CityModel city : destinations) {   
+        for (LazyTravelResponseCompletableFutureModel response : responsesCompletableFuture.get()) {  
+            
             pourcentProgress=pourcentProgress+pourcent;   
-            System.out.println(pourcentProgress+"%");      
-            goingJourney = JourneyInterface.findJourney(cityDeparture, city, request.getDepartureDate(), request.getDepartureHour(), 150);
-            commingJourney = JourneyInterface.findJourney(city, cityDeparture, request.getArrivalDate(), request.getArrivalHour(), 150);
-            hotels = hotelPlanerInterface.findAllHotelBestMatch(city, request.getDepartureDate(), request.getArrivalDate());
-            if (goingJourney.size()!=0 && commingJourney.size()!=0 && hotels.size()!=0) {
-                LazyTravelResponseModel ltr = new LazyTravelResponseModel(cityDeparture, city, goingJourney, commingJourney, hotels);
+            System.out.println(pourcentProgress+"%");
+            
+            if (response.getGoingJourney().get().size()!=0 && response.getCommingJourney().get().size()!=0 && response.getHotel().get().size()!=0) {
+                LazyTravelResponseModel ltr = new LazyTravelResponseModel(response);
                 responses.add(ltr);
                 ltr.setPrice(request.getNbrPerson());            
             }
             else {
-                if (goingJourney.size()==0) {System.out.println("No train to go to "+city.getName());}
-                if (commingJourney.size()==0) {System.out.println("No train to come back from "+city.getName());}
-                if (hotels.size()==0) {System.out.println("No hotel at "+city.getName());}
+                if (response.getGoingJourney().get().size()!=0) {System.out.println("No train to go to "+response.getCityDeparture().getName());}
+                if (response.getCommingJourney().get().size()!=0) {System.out.println("No train to come back from "+response.getCityDeparture().getName());}
+                if (response.getHotel().get().size()!=0) {System.out.println("No hotel at "+response.getCityDeparture().getName());}
             }
         }
 
         return responses;
+    }
+
+    @Async
+    public CompletableFuture<List <LazyTravelResponseCompletableFutureModel>> findTravelAsync (LazyTravelRequestModel request, List <CityModel> destinations, CityModel cityDeparture) throws StreamReadException, DatabindException, MalformedURLException, ParseException, ExecutionRequestException, IOException, InterruptedException, ExecutionException {
+        List <LazyTravelResponseCompletableFutureModel> responses = new ArrayList<>();
+
+        CompletableFuture<List <JourneyModel>> goingJourney;
+        CompletableFuture<List <JourneyModel>> commingJourney;
+        CompletableFuture<List <HotelPlannerModel>> hotels;
+        
+        for (CityModel city : destinations) {   
+
+            hotels = hotelPlanerInterface.findAllHotelBestMatch(city, request.getDepartureDate(), request.getArrivalDate());
+            goingJourney = journeyInterface.findAllJourneyBestMatch(cityDeparture, city, request.getDepartureDate(), request.getDepartureHour(), 150);
+            commingJourney = journeyInterface.findAllJourneyBestMatch(city, cityDeparture, request.getArrivalDate(), request.getArrivalHour(), 150);
+
+            responses.add(new LazyTravelResponseCompletableFutureModel(cityDeparture, city, goingJourney, commingJourney, hotels));
+        }
+        return CompletableFuture.completedFuture(responses);
+
     }
     
 }

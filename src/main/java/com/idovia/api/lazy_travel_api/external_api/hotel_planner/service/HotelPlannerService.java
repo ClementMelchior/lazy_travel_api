@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import java.net.URL;
 import java.text.ParseException;
@@ -31,8 +34,9 @@ public class HotelPlannerService implements HotelPlanerInterface {
     }
 
 
-
-    public List<HotelPlannerModel> findAllHotelBestMatch(CityModel city, String dateBegin, String dateEnd) throws ParseException {
+    @Async
+    public CompletableFuture<List<HotelPlannerModel>> findAllHotelBestMatch(CityModel city, String dateBegin, String dateEnd) throws ParseException {
+        System.out.println("Finding hotel");
         List <HotelPlannerModel> hotels = findAllHotel(city, dateBegin, dateEnd);
         List<HotelPlannerModel> sortedHotel = hotels.stream().filter(h -> (h.getDistanceFromCity()!=null && h.getReview()!=null && h.getDistanceFromCity()<3.5 && h.getReview()>=3.8))
             .sorted( (h1, h2) -> {
@@ -44,13 +48,13 @@ public class HotelPlannerService implements HotelPlanerInterface {
             Double maxPrice = sortedHotel.get(0).getCostNumeric()*1.50;
             List<HotelPlannerModel> sortedHotel2 = sortedHotel.stream().filter(h -> h.getCostNumeric()<maxPrice).collect(Collectors.toList());
 
-            return sortedHotel2;
+            return CompletableFuture.completedFuture(sortedHotel2);
         }
-        return new ArrayList<HotelPlannerModel> ();
+        return CompletableFuture.completedFuture(new ArrayList<HotelPlannerModel> ());
     }
 
 
-    private String getCustomUrl (CityModel cityModel, String dateBegin, String dateEnd) throws ParseException {
+    public String getCustomUrl (CityModel cityModel, String dateBegin, String dateEnd) throws ParseException {
         String[] dateBeginSplit = dateBegin.split("-");  
         String[] dateEndSplit = dateEnd.split("-");  
 

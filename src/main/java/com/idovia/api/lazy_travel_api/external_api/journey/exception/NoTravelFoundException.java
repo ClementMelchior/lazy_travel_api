@@ -1,4 +1,4 @@
-package com.idovia.api.lazy_travel_api.external_api.journey.kelbillet.exception;
+package com.idovia.api.lazy_travel_api.external_api.journey.exception;
 
 public class NoTravelFoundException extends Exception {
 

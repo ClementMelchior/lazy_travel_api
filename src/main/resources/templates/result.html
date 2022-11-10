@@ -3,26 +3,20 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>LazyTravelWeb</title>
-		<script src="../js/javascript.js"></script>
-		<script src="../js/jquery-2.1.4.js"></script>
+		<script th:src="@{js/javascript.js}"></script>
+		<script th:src="@{js/jquery-2.1.4.js}"></script>
 		<link th:href="@{/styles/result/computer.css}" rel="stylesheet" />
 		<link th:href="@{/styles/result/loader.css}" rel="stylesheet" />
 	</head>
 
 	<body>
-		<div class="error-wrapper">
-			<span class="error">
-				<div class="error-text">
-					<p>N'oubliez pas de remplir tous les champs de recherche</p>
-				</div>
-				<button onclick="closeError()" class="error-cross">X</button>
-			</span>
-		</div>
+		<div id="error-wrapper" class="error-wrapper">
 
+		</div>
 		<header>
 			<div class="row">
 				<div class="logo">
-					<img src="../img/idovia-white-logo.png">
+					<img th:src="@{/img/idovia-white-logo.png}">
 				</div>
 				<ul class="main-nav">
 					<li><a href="">SE CONNECTER</a></li>
@@ -34,7 +28,7 @@
 				<h1>ALORS, ON PART OÙ ?</h1>
 				<div class="contact-form">
 					<div class="block-city"> 
-						<select class="city" name="city">
+						<select id="departureCity" class="city" name="city">
 							<option value="-1" selected>Ville de départ</option>
 							<option value="Paris">Paris </option>
 							<option value="Lyon">Lyon </option>
@@ -50,13 +44,13 @@
 						</select>
 					</div>
 					<div class="block-date"> 
-						<input class="date" type="date" name="dateDeparture" placeholder="Début">
+						<input id="departureDate" class="date" type="date" name="dateDeparture" placeholder="Début">
 					</div>
 					<div class="block-date"> 
-						<input class="date" type="date" name="dateArrival" placeholder="Fin">
+						<input id="arrivalDate" class="date" type="date" name="dateArrival" placeholder="Fin">
 					</div>
 					<div class="block-traveler"> 
-						<select class="traveler" name="traveler">
+						<select id="nbrPerson" class="traveler" name="traveler">
 							<option value="-1" selected>Voyageur ?</option>
 							<option value="1">1 voyageur </option>
 							<option value="2">2 voyageurs </option>
@@ -80,7 +74,7 @@
 		<div class="loader-wrapper">
 			<span class="loader">
 				<span class="loader-inner">
-					<img src="../img/onlyLogo.PNG" />
+					<img th:src="@{/img/onlyLogo.png}" />
 				</span>
 			</span>
 		</div>
@@ -115,10 +109,15 @@
 				var arrivalDate = document.getElementById("arrivalDate").value;
 				var nbrPerson = document.getElementById("nbrPerson").value;
 
-				if (departureCity!=-1 && departureDate!="" && arrivalDate!="" && nbrPerson!=-1) {
-					window.location.href = "http://localhost:8080/lazy-travel-api/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
+				if (departureCity!=-1 && nbrPerson!=-1) {
+					if (isDateCorrect(departureDate, arrivalDate)) {
+						//window.location.href = "http://localhost:8080/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
+						window.location.href = "http://idovia-travel.fr/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
+					} else {
+						displayError("Selectionnez des dates correctes");
+					}
 				} else {
-					displayError();
+					displayError("N'oubliez pas de remplir tous les champs de recherche");
 				}
 			}
 		</script>

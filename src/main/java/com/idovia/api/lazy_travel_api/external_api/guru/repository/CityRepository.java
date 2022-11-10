@@ -40,7 +40,7 @@ public class CityRepository {
 		cities.add(new CityModel("24", "Amiens", "",  "", "7CFRamiens__%40u0ceu", "49.894067", "2.295753"));
 		cities.add(new CityModel("25", "Tours", "",  "", "7CFRtours___%40u02mx", "47.394144", "0.68484"));
 		cities.add(new CityModel("26", "Nantes", "",  "3DFRTNE", "7CFRnantes__%40gbquv", "47.218371", "-1.553621"));
-		cities.add(new CityModel("27", "Rennes ", "",  "3DFRRNL", "7CFRrennes__%40gbwc9", "48.117266", "-1.6777926"));
+		cities.add(new CityModel("27", "Rennes", "",  "3DFRRNL", "7CFRrennes__%40gbwc9", "48.117266", "-1.6777926"));
 		cities.add(new CityModel("28", "Perpignan", "",  "3DFRPGF", "7CFRperpigna%40spd4c", "42.6886591", "2.8948332"));
 		cities.add(new CityModel("29", "Le mans", "",  "", "7CFRmans____%40u081h", "48.00611", "0.199556"));
 		cities.add(new CityModel("30", "Pau", "",  "", "7CFRpau_____%40ezxwr", "43.2951", "-0.370797"));

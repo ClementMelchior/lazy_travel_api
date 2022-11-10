@@ -10,7 +10,8 @@
 	</parent>
 	<groupId>com.idovia.api</groupId>
 	<artifactId>lazy_travel_api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<version>2.0</version>
 	<name>lazy_travel_api</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -53,6 +54,14 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>com.idovia.api.lazy_travel_api.LazyTravelApiApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
