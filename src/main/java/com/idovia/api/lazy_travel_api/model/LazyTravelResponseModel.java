@@ -9,6 +9,8 @@ import com.idovia.api.lazy_travel_api.external_api.journey.model.JourneyModel;
 
 public class LazyTravelResponseModel {
 
+    private String dateBegin;
+    private String dateEnd;
     private CityModel cityDeparture;
     private CityModel cityArrival;
     private List <JourneyModel> goingJourney;
@@ -18,8 +20,10 @@ public class LazyTravelResponseModel {
 
 
     
-    public LazyTravelResponseModel(CityModel cityDeparture, CityModel cityArrival, List <JourneyModel> goingJourney, List <JourneyModel> commingJourney,
+    public LazyTravelResponseModel(String dateBegin, String dateEnd, CityModel cityDeparture, CityModel cityArrival, List <JourneyModel> goingJourney, List <JourneyModel> commingJourney,
     List <HotelPlannerModel> hotel) {
+        this.dateBegin=dateBegin;
+        this.dateBegin=dateEnd;
         this.cityDeparture=cityDeparture;
         this.cityArrival=cityArrival;
         this.goingJourney = goingJourney;
@@ -28,6 +32,8 @@ public class LazyTravelResponseModel {
     }
 
     public LazyTravelResponseModel(LazyTravelResponseCompletableFutureModel response) throws InterruptedException, ExecutionException {
+        this.dateBegin=response.getDateBegin();
+        this.dateEnd=response.getDateEnd();
         this.cityDeparture=response.getCityDeparture();
         this.cityArrival=response.getCityArrival();
         this.goingJourney = response.getGoingJourney().get();
@@ -45,6 +51,18 @@ public class LazyTravelResponseModel {
 
     // Getter and Setter 
 
+    public String getDateEnd() {
+        return dateEnd;
+    }
+    public void setDateEnd(String dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+    public String getDateBegin() {
+        return dateBegin;
+    }
+    public void setDateBegin(String dateBegin) {
+        this.dateBegin = dateBegin;
+    }
     public List <JourneyModel> getGoingJourney() {
         return goingJourney;
     }

@@ -9,9 +9,11 @@ public class JourneyModel {
     private Double price;
     private String arrivalAdress;
     private String arrivalDate;
+    private String link;
+
 
     public JourneyModel(String travelType, String departureAdress, String departureDate, int timeTravel, Double price,
-            String arrivalAdress, String arrivalDate) {
+            String arrivalAdress, String arrivalDate, String link) {
         this.travelType = travelType;
         this.departureAdress = departureAdress;
         this.departureDate = departureDate;
@@ -19,6 +21,7 @@ public class JourneyModel {
         this.price = price;
         this.arrivalAdress = arrivalAdress;
         this.arrivalDate = arrivalDate;
+        this.link=link;
     }
 
 
@@ -28,7 +31,12 @@ public class JourneyModel {
 
 
     // Getter and Setter 
-
+    public String getLink() {
+        return link;
+    }
+    public void setLink(String link) {
+        this.link = link;
+    }
     public String getTravelType() {
         return travelType;
     }

@@ -1,30 +1,31 @@
-@media(min-width: 700px) {
+@media(max-width: 700px) {
 	* {
 		margin: 0;
 		padding: 0;
 	}
-
+	
 	body {
 		font-family: monospace;
 	}
-
+	
 	header {
 		background-image: url(../../img/background.jpg);
 		height: 100vh;
 		background-size: cover;
 		background-position: center;
 	}
-
+	
 	.main-nav {
+		display: none;
 		float: right;
 		list-style: none;
 		margin-top: 55px;
 	}
-
+	
 	.main-nav li {
 		display: inline-block;
 	}
-
+	
 	.main-nav li a {
 		color: white;
 		text-decoration: none;
@@ -32,50 +33,50 @@
 		font-family: "Roboto", sans-serif;
 		font-size: 15px;
 	}
-
+	
 	.main-nav li a:hover {
 		border-bottom: 1px solid white;
 		border-radius: 0px;
 	}
-
+	
 	.logo {
-		width: 100px;
+		width: 80px;
 		height: auto;
-		float: left;
-		margin-top: 30px;
+		float: center;
+		padding: 10px;
 	}
-
+	
 	.logo img {
 		width: 250px;
-
+	
 	}
-
+	
 	.row {
 		max-width: 1200px;
 		margin: auto;
 	}
-
+	
 	.hero {
 		position: absolute;
 		top: 100px;
 		width: 100%;
 	}
-
+	
 	h1 {
 		font-family: "Roboto", sans-serif;
 		color: white;
 		text-transform: uppercase;
-		font-size: 50px;
+		font-size: 40px;
 		text-align: center;
-		margin-top: 180px;
+		margin-top: 80px;
 		margin-bottom: 40px;
 	}
-
+	
 	.button {
 		text-align: center;
 		margin-top: 50px;
 	}
-
+	
 	.btn {
 		font-family: "Roboto", sans-serif;
 		border: 1px solid white;
@@ -86,51 +87,52 @@
 		text-transform: uppercase;
 		text-decoration: none;
 	}
-
+	
 	.btn-one {
 		background-color: #f18f01;
 	}
-
+	
 	.button:hover {
 		background-color: #f18f01;
 		transition: all 0.2s ease-in;
 	}
-
+	
 	.grid-container {
 		display: grid;
-		grid-template-columns: auto auto;
-		padding: 10px;
+		  grid-template-columns: auto auto;
+		  padding: 10px;
 	}
-
+	
 	.grid-item {
 		padding: 20px;
 	}
-
+	
 	.service {
 		background-image: url(assets/img-banner@2x.png);
 		height: 100vh;
 		background-size: cover;
 		background-position: center;
 	}
-
-
+	
+	
 	.contact-form {
 		font-family: "Arial", "Helvetica", sans-serif;
-		margin-left: 15%;
-		margin-right: 15%;
-		height: 60px;
+		margin-left: 20%;
+		margin-right: 20%;
+		min-width: 300px;
+		height: 360px;
 		background-color: white;
-		border-radius: 40px;
-		display: flex;
+		border-radius: 20px;
 	}
-
-
+	
+	
 	.contact-form .block{
 		background-color: white;
-		border-radius: 40px;
+		border-radius: 20px;
 	}
 
 	input {
+		text-align: center;
 		font-size: 20px;
 		border: none;
 		height: 100%;
@@ -138,7 +140,7 @@
 		border-radius: 40px;
 		color: grey;
 	}
-
+	
 	a {
 		font-size: 20px;
 		border: none;
@@ -146,56 +148,65 @@
 		width: 100%;
 		border-radius: 40px;
 	}
-
+	
 	select {
 		font-size: 20px;
 		color: grey;
 		border: none;
 		height: 100%;
 		width: 100%;
-		border-radius: 40px;
+		text-align: center;
+		border-radius: 10px;
 		text-decoration: none;
 		background-color: white;
 		-webkit-appearance: none;
-	-moz-appearance: none;
-		appearance: none;       /* Remove default arrow */
+	   -moz-appearance: none;
+		   appearance: none;       /* Remove default arrow */
 	}
-
+	
 	.contact-form .block-city {
 		height: 60px;
-		margin-left: 30px;
-		border-radius: 40px;
-		width: 20%;
+		margin-left: 5%;
+		margin-right: 5%;
+		margin-top: 10px;
+		border-radius: 10px;
+		width: 90%;
+		display: block;
 	}
-
+	
 	.contact-form .block-date {
 		height: 60px;
-		width: 15%;
-		margin-left: 8%;
-		margin-left: 4%;
+		width: 90%;
+		margin-top: 10px;
+		margin-left: 5%;
+		margin-right: 5%;
 		border-left: #006e90;
 		border-right: #006e90;
+		display: block;
 	}
-
+	
 	.contact-form .block-traveler {
-		margin-left: 8%;
-		margin-right: 4%;
+		margin-top: 10px;
+		margin-left: 5%;
+		margin-right: 5%;	
 		height: 60px;
-		width: 15%;
+		width: 90%;
 		border-left: #006e90;
 		border-right: #006e90;
+		display: block;
 	}
-
+	
 	.contact-form .block-button {
 		background-color: #E9CB45; /* Green */
-		border-radius: 40px;
-		margin-left: 5px;
-		margin-right: 5px;
-		margin-top: 5px;
-		width: 17%;
+		border-radius: 20px;
+		margin-left: 10%;
+		margin-right: 10%;
+		margin-top: 20px;
+		width: 80%;
 		height: 50px;
+		display: block;
 	} 
-
+	
 	.button-search {
 		width: 100%;
 		height: 50px;
@@ -212,32 +223,32 @@
 		width: 100%;
 		height: 50px;
 	}
-
+	
 	.button-search:hover {
 		background-color: #EA8858;
 		transition: all 0.2s ease-in;
 	}
-
+	
 	.contact-section-header {
 		color: #282828;
 		font-family: "Roboto", sans-serif;
 		font-size: 25px;
 		margin-bottom: 20px;
 	}
-
+	
 	input[type=number]::-webkit-inner-spin-button,
-	input[type=number]::-webkit-outer-spin-button {
+	  input[type=number]::-webkit-outer-spin-button {
 		-webkit-appearance: none;
 		margin: 0;
-	}
-
-	.subject {
-		height: 150px;
-		color: black;
-	}
-
+	 }
+	
+	 .subject {
+		 height: 150px;
+		 color: black;
+	 }
+	
 	/* ---------- error ----------- */
-
+	
 	.error-wrapper {
 		margin-left: 5%;
 		margin-right: 5%;
@@ -251,12 +262,12 @@
 		top: 0;
 		left: 0;
 	}
-
+	
 	.error {
 		width: 100%;
 		height: 100%;
 	}
-
+	
 	.error-text {
 		float: left;
 		margin: 10px;
@@ -264,7 +275,7 @@
 		height: 50px;
 		font-size: 20px;
 	}
-
+	
 	.error-cross {
 		float: right;
 		font-size: 30px;
@@ -279,3 +290,5 @@
 		z-index: 999;
 	}
 }
+
+

@@ -5,6 +5,8 @@ import com.idovia.api.lazy_travel_api.external_api.journey.model.JourneyModel;
 
 public class LazyTravelUniqueResponseModel {
 
+    private String dateBegin;
+    private String dateEnd;
     private String cityDeparture;
     private String cityArrival;
     private JourneyModel goingJourney;
@@ -13,6 +15,8 @@ public class LazyTravelUniqueResponseModel {
     private String price;
 
     public LazyTravelUniqueResponseModel(LazyTravelResponseModel responseModel) {
+        this.dateBegin=responseModel.getDateBegin();
+        this.dateEnd=responseModel.getDateEnd();
         this.cityDeparture=responseModel.getCityDeparture().getName();
         this.cityArrival=responseModel.getCityArrival().getName();
         this.goingJourney = responseModel.getGoingJourney().get(0);
@@ -32,6 +36,12 @@ public class LazyTravelUniqueResponseModel {
 
     // Getter and Setter 
 
+    public String getDateBegin() {
+        return dateBegin;
+    }
+    public void setDateBegin(String dateBegin) {
+        this.dateBegin = dateBegin;
+    }
     public JourneyModel getGoingJourney() {
         return goingJourney;
     }
@@ -64,6 +74,12 @@ public class LazyTravelUniqueResponseModel {
     }
     public void setCityArrival(String cityArrival) {
         this.cityArrival = cityArrival;
+    }
+    public String getDateEnd() {
+        return dateEnd;
+    }
+    public void setDateEnd(String dateEnd) {
+        this.dateEnd = dateEnd;
     }
     
 }

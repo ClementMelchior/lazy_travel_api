@@ -9,6 +9,8 @@ import com.idovia.api.lazy_travel_api.external_api.journey.model.JourneyModel;
 
 public class LazyTravelResponseCompletableFutureModel {
 
+    private String dateBegin;
+    private String dateEnd;
     private CityModel cityDeparture;
     private CityModel cityArrival;
     private CompletableFuture <List <JourneyModel>> goingJourney;
@@ -18,8 +20,10 @@ public class LazyTravelResponseCompletableFutureModel {
 
 
     
-    public LazyTravelResponseCompletableFutureModel(CityModel cityDeparture, CityModel cityArrival, CompletableFuture <List <JourneyModel>> goingJourney, CompletableFuture <List <JourneyModel>> commingJourney,
+    public LazyTravelResponseCompletableFutureModel(String dateBegin, String dateEnd, CityModel cityDeparture, CityModel cityArrival, CompletableFuture <List <JourneyModel>> goingJourney, CompletableFuture <List <JourneyModel>> commingJourney,
     CompletableFuture <List <HotelPlannerModel>> hotel) {
+        this.dateBegin=dateBegin;
+        this.dateEnd=dateEnd;
         this.cityDeparture=cityDeparture;
         this.cityArrival=cityArrival;
         this.goingJourney = goingJourney;
@@ -29,6 +33,18 @@ public class LazyTravelResponseCompletableFutureModel {
 
     // Getter and Setter 
 
+    public String getDateEnd() {
+        return dateEnd;
+    }
+    public void setDateEnd(String dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+    public String getDateBegin() {
+        return dateBegin;
+    }
+    public void setDateBegin(String dateBegin) {
+        this.dateBegin = dateBegin;
+    }
     public CompletableFuture <List <JourneyModel>> getGoingJourney() {
         return goingJourney;
     }

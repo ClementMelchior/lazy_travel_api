@@ -7,6 +7,7 @@
 		<script th:src="@{js/jquery-2.1.4.js}"></script>
 		<link th:href="@{/styles/result/computer.css}" rel="stylesheet" />
 		<link th:href="@{/styles/result/loader.css}" rel="stylesheet" />
+		<link th:href="@{/styles/result/mobile.css}" rel="stylesheet"/>
 	</head>
 
 	<body>
@@ -111,8 +112,8 @@
 
 				if (departureCity!=-1 && nbrPerson!=-1) {
 					if (isDateCorrect(departureDate, arrivalDate)) {
-						//window.location.href = "http://localhost:8080/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
-						window.location.href = "http://idovia-travel.fr/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
+						window.location.href = "http://localhost:8080/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
+						//window.location.href = "http://idovia-travel.fr/findTravel?departureCity="+departureCity+"&departureDate="+departureDate+"&departureHour=07:00&arrivalDate="+arrivalDate+"&arrivalHour=17:00&nbrPerson="+nbrPerson;
 					} else {
 						displayError("Selectionnez des dates correctes");
 					}

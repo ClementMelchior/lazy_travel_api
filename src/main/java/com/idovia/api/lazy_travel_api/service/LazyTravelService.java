@@ -47,7 +47,7 @@ public class LazyTravelService implements LazyTravelInterface{
         System.out.println(request.getDepartureCity());
 
         CityModel cityDeparture = cityRepository.findByName(request.getDepartureCity());
-        List <CityModel> destinations = this.guruInterface.findAllNearbyCityByTimeTravel(cityDeparture, 50, 100);
+        List <CityModel> destinations = this.guruInterface.findAllNearbyCityByTimeTravel(cityDeparture, 30, 100);
 
         int pourcent = 100/destinations.size();
         int pourcentProgress = 0;
@@ -88,7 +88,7 @@ public class LazyTravelService implements LazyTravelInterface{
             goingJourney = journeyInterface.findAllJourneyBestMatch(cityDeparture, city, request.getDepartureDate(), request.getDepartureHour(), 150);
             commingJourney = journeyInterface.findAllJourneyBestMatch(city, cityDeparture, request.getArrivalDate(), request.getArrivalHour(), 150);
 
-            responses.add(new LazyTravelResponseCompletableFutureModel(cityDeparture, city, goingJourney, commingJourney, hotels));
+            responses.add(new LazyTravelResponseCompletableFutureModel(request.getDepartureDate(), request.getArrivalDate(), cityDeparture, city, goingJourney, commingJourney, hotels));
         }
         return CompletableFuture.completedFuture(responses);
 
